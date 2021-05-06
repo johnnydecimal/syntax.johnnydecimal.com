@@ -1,6 +1,6 @@
 # Johnny.Decimal syntax definition
 
-This file is the authoritative source for the approved JD syntax.
+This file is the authoritative source for the approved Johnny.Decimal ('JD') syntax.
 
 > Status: draft.
 
@@ -13,6 +13,10 @@ The goals of the JD syntax are:
     - to allow the creation of a central database which presents an API that any app may consume.
 2. To be human-readable in the same way that [Markdown](https://daringfireball.net/projects/markdown/syntax#philosophy) is.
 3. To specify a common set of errors which result from the incorrect parsing of a JD file.
+
+# Definitions
+
+- 'JD system': a valid set of numbers which entirely defines a *what*?
 
 # Syntax
 
@@ -35,3 +39,28 @@ A full Johnny.Decimal number may take two forms:
     - The separator is a Unicode FULL STOP (U+002E).
     - In the abstract case we refer to this number as `PRO.AC.ID`.
 
+## Representing a JD system
+
+The simplest JD system is shown.
+
+```
+00-09 The first area
+   00 The first category
+      00.00 The first ID
+```
+
+All IDs must be contained within the correct category.
+
+```
+00-09 The first area
+   01 The wrong category
+      00.00 The first ID // INVALID - does not belong to the correct category
+```
+
+All categories must be contained within the correct area.
+
+```
+10-19 The wrong area
+   00 The first category // INVALID - does not belong to the correct area
+      00.00 The first ID
+```
