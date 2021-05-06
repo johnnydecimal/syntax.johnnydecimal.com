@@ -64,3 +64,43 @@ All categories must be contained within the correct area.
    00 The first category // INVALID - does not belong to the correct area
       00.00 The first ID
 ```
+
+All items must appear in numerical order.
+
+```
+00-09 The first area
+   00 The first category
+      00.01 An out-of-order ID
+      00.00 The first ID // INVALID - is not sequential
+```
+
+```
+00-09 The first area
+   01 An out-of-order category
+   00 The first category // INVALID - is not sequential
+      00.00 The first ID
+```
+
+```
+10-19 An out-of-order area
+00-09 The first area // INVALID - is not sequential
+   00 The first category
+      00.00 The first ID
+```
+
+Duplicates are not allowed.
+
+```
+00-09 The first area
+   00 The first category
+      00.00 The first ID
+      00.00 A duplicate ID // INVALID - duplicate number
+```
+
+There is *no* requirement for parents to contain children. The following is valid even though `00-09` contains no categories and `10` contains no IDs.
+
+```
+00-09 The first area
+10-19 The second area
+   10 A category
+```
